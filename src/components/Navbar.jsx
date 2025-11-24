@@ -5,17 +5,17 @@ export default function Navbar() {
     const links = (
         <>
             <li>
-                <Link className="" href="">
+                <Link className="hover:text-primary" href="">
                     Read Stories
                 </Link>
             </li>
             <li>
-                <Link className="" href="">
+                <Link className="hover:text-primary" href="">
                     Add Story
                 </Link>
             </li>
             <li>
-                <Link className="" href="">
+                <Link className="hover:text-primary" href="">
                     Manage Stories
                 </Link>
             </li>
@@ -59,7 +59,7 @@ export default function Navbar() {
                     </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1">{links}</ul>
+                    <ul className="flex gap-3 px-1">{links}</ul>
                 </div>
                 <div className="navbar-end">
                     <ul className="flex gap-3">
