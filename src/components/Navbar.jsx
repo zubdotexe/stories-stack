@@ -22,7 +22,7 @@ export default function Navbar() {
         </>
     );
     return (
-        <div className="bg-base-100 shadow-sm">
+        <div className="bg-white border-b border-[var(--navbar-border)]">
             <div className="max-w-7xl mx-auto navbar">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -62,7 +62,18 @@ export default function Navbar() {
                     <ul className="menu menu-horizontal px-1">{links}</ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Button</a>
+                    <ul className="flex gap-3">
+                        <li>
+                            <Link href="" className="btn btn-outline btn-primary hover:bg-[#FFF2E0] text-neutral">
+                                Login
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="" className="btn btn-primary">
+                                Register
+                            </Link>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
