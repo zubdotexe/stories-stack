@@ -1,4 +1,5 @@
 import Banner from "@/components/Banner";
+import QuoteOfTheDay from "@/components/QuoteOfTheDay";
 import TopAuthors from "@/components/TopAuthors";
 import Image from "next/image";
 
@@ -7,6 +8,7 @@ export default function Home() {
     <div className="max-w-7xl mx-auto">
       <Banner />
       <TopAuthors />
+      <QuoteOfTheDay />
     </div>
   );
 }
