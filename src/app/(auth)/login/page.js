@@ -4,9 +4,10 @@ import { AuthContext } from "@/context/AuthContext";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useContext } from "react";
+import { toast } from "react-toastify";
 
 export default function Login() {
-    const { loginWGoogle } = useContext(AuthContext);
+    const { loginUser, loginWGoogle } = useContext(AuthContext);
     const router = useRouter();
 
     const handleGoogleLogin = () => {
@@ -17,6 +18,26 @@ export default function Login() {
             })
             .catch((error) => {
                 alert("", error);
+                toast.error(error.message);
+            });
+    };
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+
+        console.log("", email, password);
+
+        loginUser(email, password)
+            .then((res) => {
+                console.log("", res);
+                router.push("/");
+            })
+            .catch((error) => {
+                console.log("", error);
+                toast.error(error.message);
             });
     };
 
@@ -25,12 +46,18 @@ export default function Login() {
             <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
                 <legend className="fieldset-legend text-2xl">Login</legend>
 
-                <form>
+                <form onSubmit={handleLogin}>
                     <label className="label">Email</label>
-                    <input type="email" className="input" placeholder="Email" />
+                    <input
+                        name="email"
+                        type="email"
+                        className="input"
+                        placeholder="Email"
+                    />
 
                     <label className="label">Password</label>
                     <input
+                        name="password"
                         type="password"
                         className="input"
                         placeholder="Password"
