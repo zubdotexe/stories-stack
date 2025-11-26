@@ -1,5 +1,9 @@
+"use client";
+
+import { AuthContext } from "@/context/AuthContext";
 import Link from "next/link";
-import React from "react";
+import { useRouter } from "next/navigation";
+import React, { useContext } from "react";
 
 export default function Navbar() {
     const links = (
@@ -21,6 +25,21 @@ export default function Navbar() {
             </li>
         </>
     );
+
+    const { user, logoutUser } = useContext(AuthContext);
+    const router = useRouter();
+
+    const handleLogout = () => {
+        logoutUser()
+            .then((res) => {
+                console.log("", res);
+                router.push("/login");
+            })
+            .catch((error) => {
+                console.log("", error);
+            });
+    };
+
     return (
         <div className="bg-white border-b border-[var(--navbar-border)]">
             <div className="max-w-7xl mx-auto navbar">
@@ -49,7 +68,7 @@ export default function Navbar() {
                         </div>
                         <ul
                             tabIndex="-1"
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-2 mt-3 w-52 p-2 shadow"
                         >
                             {links}
                         </ul>
@@ -62,18 +81,35 @@ export default function Navbar() {
                     <ul className="flex gap-3 px-1">{links}</ul>
                 </div>
                 <div className="navbar-end">
-                    <ul className="flex gap-3">
-                        <li>
-                            <Link href="" className="btn btn-outline btn-primary hover:bg-[#FFF2E0] text-neutral">
-                                Login
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="" className="btn btn-primary">
-                                Register
-                            </Link>
-                        </li>
-                    </ul>
+                    {user ? (
+                        <button
+                            onClick={handleLogout}
+                            className="btn btn-secondary"
+                        >
+                            Logout
+                        </button>
+                    ) : (
+                        <>
+                            <ul className="flex gap-3">
+                                <li>
+                                    <Link
+                                        href="/login"
+                                        className="btn btn-outline btn-primary hover:bg-[#FFF2E0] text-neutral"
+                                    >
+                                        Login
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/register"
+                                        className="btn btn-primary"
+                                    >
+                                        Register
+                                    </Link>
+                                </li>
+                            </ul>
+                        </>
+                    )}
                 </div>
             </div>
         </div>
