@@ -10,7 +10,7 @@ export default function Navbar() {
     const links = (
         <>
             <li>
-                <Link className="hover:text-primary" href="">
+                <Link className="hover:text-primary" href="/stories">
                     Read Stories
                 </Link>
             </li>

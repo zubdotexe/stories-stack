@@ -10,7 +10,7 @@ export default function StoryCard({ story }) {
                 </h3>
                 <div>
                     {story.tags.map((tag) => (
-                        <div className="badge badge-soft badge-error mr-2">
+                        <div className="badge badge-soft badge-error mr-2 mb-2">
                             {tag}
                         </div>
                     ))}
