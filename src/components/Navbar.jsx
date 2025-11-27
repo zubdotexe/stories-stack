@@ -4,6 +4,7 @@ import { AuthContext } from "@/context/AuthContext";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useContext } from "react";
+import { LuUserRound } from "react-icons/lu";
 
 export default function Navbar() {
     const links = (
@@ -41,7 +42,7 @@ export default function Navbar() {
     };
 
     return (
-        <div className="bg-white border-b border-[var(--navbar-border)]">
+        <div className="bg-white border-b border-[var(--navbar-border)] sticky top-0 z-2">
             <div className="max-w-7xl mx-auto navbar">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -82,12 +83,15 @@ export default function Navbar() {
                 </div>
                 <div className="navbar-end">
                     {user ? (
-                        <button
-                            onClick={handleLogout}
-                            className="btn btn-secondary"
-                        >
-                            Logout
-                        </button>
+                        <>
+                            <LuUserRound size={24} className="mr-2" />
+                            <button
+                                onClick={handleLogout}
+                                className="btn btn-secondary"
+                            >
+                                Logout
+                            </button>
+                        </>
                     ) : (
                         <>
                             <ul className="flex gap-3">

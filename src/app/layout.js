@@ -1,6 +1,8 @@
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "@/context/AuthContext";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const inter = Inter({
     variable: "--font-inter",
@@ -28,7 +30,11 @@ export default function RootLayout({ children }) {
             <body
                 className={`${inter.variable} ${geistMono.variable} antialiased`}
             >
-                <AuthProvider>{children}</AuthProvider>
+                <AuthProvider>
+                    <Navbar />
+                    {children}
+                    <Footer />
+                </AuthProvider>
             </body>
         </html>
     );
