@@ -1,10 +1,21 @@
+"use client";
+
 import StoryCard from "@/components/StoryCard";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-export default async function page() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || ""}/api/stories`);
+export default function page() {
+    // const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || ""}/api/stories`);
 
-    const stories = await res.json();
+    // const stories = await res.json();
+
+    const [stories, setStories] = useState([]);
+
+    useEffect(() => {
+        fetch("/api/stories?limit=6")
+            .then((res) => res.json())
+            .then((data) => setStories(data))
+            .catch(console.error);
+    }, []);
 
     return (
         <div className="my-10">

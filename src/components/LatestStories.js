@@ -1,11 +1,24 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import StoryCard from "./StoryCard";
 import Link from "next/link";
 
-export default async function LatestStories() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || ""}/api/stories?limit=6`);
+export default function LatestStories() {
+    // const res = await fetch(
+    //     `${process.env.NEXT_PUBLIC_SITE_URL || ""}/api/stories?limit=6`
+    // );
 
-    const stories = await res.json();
+    // const stories = await res.json();
+
+    const [stories, setStories] = useState([]);
+
+    useEffect(() => {
+        fetch("/api/stories?limit=6")
+            .then((res) => res.json())
+            .then((data) => setStories(data))
+            .catch(console.error);
+    }, []);
 
     return (
         <div className="mt-10">

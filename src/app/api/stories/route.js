@@ -3,6 +3,15 @@ import clientPromise from "@/lib/mongodb";
 export async function GET(request) {
     try {
         const client = await clientPromise;
+
+        if (!process.env.MONGODB_URI) {
+            return Response.json({
+                success: true,
+                stories: [],
+                message: "MongoDB not configured",
+            });
+        }
+
         const db = client.db("stories-stack");
 
         const { searchParams } = new URL(request.url);
@@ -27,6 +36,15 @@ export async function POST(request) {
     try {
         const body = await request.json();
         const client = await clientPromise;
+
+        if (!process.env.MONGODB_URI) {
+            return Response.json({
+                success: true,
+                stories: [],
+                message: "MongoDB not configured",
+            });
+        }
+
         const db = client.db("stories-stack");
 
         const result = await db.collection("stories").insertOne(body);
