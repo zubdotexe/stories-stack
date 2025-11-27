@@ -2,7 +2,7 @@ import React from "react";
 import StoryCard from "./StoryCard";
 
 export default async function LatestStories() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/stories`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/stories?limit=6`);
 
     const stories = await res.json();
 

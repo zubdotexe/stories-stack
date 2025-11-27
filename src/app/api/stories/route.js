@@ -5,7 +5,17 @@ export async function GET(request) {
         const client = await clientPromise;
         const db = client.db("stories-stack");
 
-        const stories = await db.collection("stories").find().toArray();
+        const { searchParams } = new URL(request.url);
+
+        const limit = Number(searchParams.get("limit")) || 0;
+
+        let query = db.collection("stories").find();
+
+        if (limit > 0) {
+            query = query.limit(limit);
+        }
+
+        const stories = await query.toArray();
 
         return Response.json(stories);
     } catch (err) {
