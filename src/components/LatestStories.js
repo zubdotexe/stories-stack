@@ -1,8 +1,9 @@
 import React from "react";
 import StoryCard from "./StoryCard";
+import Link from "next/link";
 
 export default async function LatestStories() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/stories?limit=6`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || ""}/api/stories?limit=6`);
 
     const stories = await res.json();
 
@@ -14,6 +15,11 @@ export default async function LatestStories() {
                     {stories.map((story) => (
                         <StoryCard key={story._id} story={story} />
                     ))}
+                </div>
+                <div className="flex justify-center mt-10">
+                    <Link href="/stories" className="btn btn-primary">
+                        More Stories
+                    </Link>
                 </div>
             </div>
         </div>

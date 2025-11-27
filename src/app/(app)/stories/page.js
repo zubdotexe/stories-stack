@@ -2,7 +2,7 @@ import StoryCard from "@/components/StoryCard";
 import React from "react";
 
 export default async function page() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/stories`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || ""}/api/stories`);
 
     const stories = await res.json();
 
